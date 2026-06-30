@@ -6,12 +6,17 @@ NumberOfCycles                5000
 NumberOfInitializationCycles  2000
 
 PrintEvery                    1000
-Forcefield                    ExampleZeolitesForceField
+Forcefield                    FeZeoliteFF
+
+ChargeMethod                  Ewald
 
 CutOff                        12.0
+
+UseChargesFromCIFFile         no
+Movies                        yesWriteMoviesEvery              100
 Framework 0
 
-FrameworkName                 FAU_SI
+FrameworkName                 Fe_zeolite
 
 UnitCells                     1 1 1
 
