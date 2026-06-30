@@ -1,0 +1,13 @@
+
+**/Output/
+
+**/Movies/
+
+**/Restart/
+
+**/VTK/
+
+pycache/
+
+*.pyc
+

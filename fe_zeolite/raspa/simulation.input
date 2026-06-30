@@ -1,0 +1,34 @@
+
+SimulationType                MonteCarlo
+
+NumberOfCycles                5000
+
+NumberOfInitializationCycles  2000
+
+PrintEvery                    1000
+Forcefield                    ExampleZeolitesForceField
+
+CutOff                        12.0
+Framework 0
+
+FrameworkName                 FAU_SI
+
+UnitCells                     1 1 1
+
+ExternalTemperature           298.0
+
+ExternalPressure              1e5
+Component 0 MoleculeName             CO2
+
+MoleculeDefinition       ExampleDefinitions
+
+TranslationProbability   1.0
+
+RotationProbability      1.0
+
+ReinsertionProbability   1.0
+
+SwapProbability          2.0
+
+CreateNumberOfMolecules  0
+
