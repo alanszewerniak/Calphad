@@ -16,6 +16,7 @@ P = {
     "OX": (15.9994, -0.3256, 0.30170, 0.712408),   # CO2 oxygen
 }
 elem2type = {"Si": "SI", "Al": "AL", "O": "OZ", "Fe": "FE"}
+FW_TYPES = ["SI", "AL", "OZ", "FE"]
 
 N_CO2   = 15
 CO2_CO  = 1.16
@@ -87,6 +88,14 @@ def atomtypes_block():
 top = "[ defaults ]\n; nbfunc  comb-rule  gen-pairs  fudgeLJ  fudgeQQ\n1  2  yes  0.5  0.5\n\n"
 top += atomtypes_block()
 
+# zero the framework-framework LJ (frozen rigid framework: its internal LJ is
+# meaningless and its bonded Si-O pairs would otherwise blow the energy up)
+top += "[ nonbond_params ]\n; i j func sigma epsilon\n"
+for a in range(len(FW_TYPES)):
+    for b in range(a, len(FW_TYPES)):
+        top += "%s %s 1 0.30 0.0\n" % (FW_TYPES[a], FW_TYPES[b])
+top += "\n"
+
 top += "[ moleculetype ]\n; name  nrexcl\nFRM  1\n\n[ atoms ]\n"
 top += "; id  type  resnr  resname  atom  cgnr  charge   mass\n"
 for j, t in enumerate(ftype):
@@ -97,7 +106,6 @@ top += "\n"
 #builds a master table of each atom type with its mass, sigma and epsilon; sets the global rules ([ defaults ], comb-rule 2 to match RASPA)
 #lists every framework atom as one frozen molecule called FRM
 #each line carrying that atom's real charge and mass, with no bonds so the framework stays rigid
-
 
 top += "[ moleculetype ]\n; name  nrexcl\nCO2  2\n\n[ atoms ]\n"
 top += "1  CX  1  CO2  C  1  %8.4f  %8.4f\n" % (P["CX"][1], P["CX"][0])

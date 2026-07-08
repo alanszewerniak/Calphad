@@ -11,3 +11,17 @@ pycache/
 
 *.pyc
 
+
+# heavy simulation outputs
+Output/
+Movies/
+Restart/
+VTK/
+*.xtc
+*.trr
+*.tpr
+*.edr
+*.log
+*.cpt
+mdout.mdp
+\#*\#

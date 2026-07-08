@@ -49,8 +49,6 @@ Two files: force_field_mixing_rules.def (Lennard-Jones) and pseudo_atoms.def (id
 Added to force_field_mixing_rules.def (taken from RASPA's ExampleMOFsForceField, UFF):
   Fe_   lennard-jones   6.54185   2.5943   // UFF
 (epsilon in K, sigma in A). Remember to bump the "number of interactions" count when adding atoms.
-
-### TO DO: charges (and a consistent framework Lennard-Jones)
 Source found: Chen, Zhu, Tang, Fu, Li, Xiao (2018), "Molecular simulation and experimental investigation of CO2 capture in 13X zeolite". This is FAU/13X (our framework) using GCMC + UFF + Ewald + Lorentz-Berthelot + 12 A cutoff (matches RASPA). It gives a complete, consistent, citable force field.
 
 Framework partial charges (Chen 2018, Table 1), in e:
@@ -67,12 +65,7 @@ Lennard-Jones (Chen 2018, Table 2, UFF): sigma in A, epsilon in kJ/mol -> conver
   Na      2.983       0.1255         ~15.1
   Fe      2.5943      0.0544         6.54185  (UFF, already added)
 
-### The Fe charge (the one thing Chen does not give — Fe not in that paper)
-Chen's charges are scaled (Na is +0.57, not formal +1). Each Fe replaces two Na, so a clean, neutral-preserving choice is:
-  Fe charge = 2 x Na charge = 2 x 0.57 = +1.14 e
-Flag this as a justified first-model assumption. Rigorous version = DFT-derived charges (e.g. DDEC6) on the Fe structure.
-
-## Next steps (resume here)
+## Done
 1. Edit pseudo_atoms.def in FeZeoliteFF: add Fe (mass 55.845, charge +1.14), and set Si/Al/O charges from Chen 2018. Make sure the whole cell sums to neutral.
 2. For consistency, update the framework Lennard-Jones in force_field_mixing_rules.def to the Chen/UFF values above (currently it uses the chargeless Bai/Siepmann silica values). Decide whether to keep RASPA's built-in TraPPE CO2 or use Chen's UFF CO2 — keep it consistent either way.
 3. Make sure electrostatics is on in simulation.input (ChargeMethod Ewald). Point Forcefield at FeZeoliteFF and FrameworkName at Fe_zeolite.

@@ -1,0 +1,26 @@
+; NVT MD: CO2 diffusing in a frozen Fe-zeolite
+integrator      = md
+dt              = 0.001
+nsteps          = 500000
+nstxout-compressed = 500
+nstenergy       = 500
+nstlog          = 5000
+
+cutoff-scheme   = Verlet
+nstlist         = 10
+pbc             = xyz
+
+coulombtype     = PME
+rcoulomb        = 1.0
+rvdw            = 1.0
+
+tcoupl          = V-rescale
+tc-grps         = System
+tau-t           = 0.2
+ref-t           = 298
+
+freezegrps      = Framework
+freezedim       = Y Y Y
+
+gen-vel         = yes
+gen-temp        = 298

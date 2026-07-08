@@ -1,4 +1,5 @@
-SimulationType                MonteCarlo
+import os
+txt = """SimulationType                MonteCarlo
 NumberOfCycles                5000
 NumberOfInitializationCycles  2000
 PrintEvery                    1000
@@ -6,13 +7,13 @@ PrintEvery                    1000
 Movies                        yes
 WriteMoviesEvery              500
 
-Forcefield                    FeZeoliteFF
+Forcefield                    NiZeoliteFF
 ChargeMethod                  Ewald
 CutOff                        12.0
 UseChargesFromCIFFile         no
 
 Framework 0
-FrameworkName                 Fe_zeolite
+FrameworkName                 Ni_zeolite
 UnitCells                     1 1 1
 ExternalTemperature           298.0
 ExternalPressure              1e5
@@ -24,3 +25,6 @@ Component 0 MoleculeName             CO2
             ReinsertionProbability   1.0
             SwapProbability          2.0
             CreateNumberOfMolecules  0
+"""
+open(os.path.expanduser("~/Calphad/ni_zeolite/raspa/simulation.input"), "w").write(txt)
+print("wrote simulation.input with Movies enabled")
