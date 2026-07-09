@@ -1,0 +1,32 @@
+SimulationType                MonteCarlo
+NumberOfCycles                3000
+NumberOfInitializationCycles  1500
+PrintEvery                    500
+
+Forcefield                    FeZeoliteFF
+ChargeMethod                  Ewald
+CutOff                        12.0
+UseChargesFromCIFFile         no
+
+Framework 0
+FrameworkName                 Fe_zeolite
+UnitCells                     1 1 1
+ExternalTemperature           298.0
+ExternalPressure              1e5
+
+Component 0 MoleculeName             CO2
+            MoleculeDefinition       ExampleDefinitions
+            MolFraction              0.5
+            TranslationProbability   1.0
+            RotationProbability      1.0
+            ReinsertionProbability   1.0
+            SwapProbability          2.0
+            CreateNumberOfMolecules  0
+
+Component 1 MoleculeName             methane
+            MoleculeDefinition       ExampleDefinitions
+            MolFraction              0.5
+            TranslationProbability   1.0
+            ReinsertionProbability   1.0
+            SwapProbability          2.0
+            CreateNumberOfMolecules  0
